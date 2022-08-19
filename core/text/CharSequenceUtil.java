@@ -255,4 +255,55 @@ public class CharSequenceUtil {
     public static boolean isEmpty(CharSequence str) {
         return str == null || str.length() == 0;
     }
+
+    /**
+     * 去除字符串中指定的多个字符，如果多个则全部去除
+     * @param str 字符串
+     * @param chars 字符列表
+     * @return 去除后的字符
+     */
+    public static String removeAll(String str, char... chars) {
+        if (null == str || ArrayUtil.isEmpty(chars)) {
+            return str(str);
+        }
+        final int len = str.length();
+        final StringBuilder builder = new StringBuilder(len);
+        char c;
+        for (int i = 0; i < len; i++) {
+            c = str.charAt(i);
+            if (!ArrayUtil.contains(chars, c)) {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * {@link CharSequence} 转为字符串，null 安全
+     *
+     * @param cs {@link CharSequence}
+     * @return 字符串
+     */
+    public static String str(CharSequence cs) {
+        return null == cs ? null : cs.toString();
+    }
+
+    /**
+     * 如果字符串是 {@code null}，则返回指定默认字符串，否则返回字符串本身。
+     *
+     * <pre>
+     * nullToDefault(null, &quot;default&quot;)  = &quot;default&quot;
+     * nullToDefault(&quot;&quot;, &quot;default&quot;)    = &quot;&quot;
+     * nullToDefault(&quot;  &quot;, &quot;default&quot;)  = &quot;  &quot;
+     * nullToDefault(&quot;bat&quot;, &quot;default&quot;) = &quot;bat&quot;
+     * </pre>
+     *
+     * @param str        要转换的字符串
+     * @param defaultStr 默认字符串
+     * @return 字符串本身或指定的默认字符串
+     */
+    public static String nullToDefault(String str, String defaultStr) {
+        return (str == null) ? defaultStr : str.toString();
+    }
+
 }

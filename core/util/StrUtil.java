@@ -7,4 +7,6 @@ import core.text.CharSequenceUtil;
  */
 public class StrUtil extends CharSequenceUtil {
 
+
+
 }
